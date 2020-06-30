@@ -1,0 +1,16 @@
+import numpy as np
+import cv2
+fc=cv2.CascadeClassifier("./haarcascades/haarcascade_frontalface_default.xml")
+
+input=cv2.imread('./img/modi.png')
+gray=cv2.cvtColor(input,cv2.COLOR_BGR2GRAY)
+
+faces=fc.detectMultiScale(gray,1.3,5)
+
+if faces is():
+    print("faces not found")
+for (x,y,w,h) in faces:
+    cv2.rectangle(input,(x,y),(x+w,y+h),(255,255,0),2)
+    cv2.imshow("face detection",input)
+    cv2.waitKey()
+cv2.destroyAllWindows()
